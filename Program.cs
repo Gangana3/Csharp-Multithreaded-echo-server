@@ -1,10 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Linq;
-using System.Text;
-using System.Net.Sockets;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Net;
 
 
 namespace Server
@@ -14,10 +8,13 @@ namespace Server
 
         static void Main(string[] args)
         {
-            using (var server = new EchoServer(new IPEndPoint(IPAddress.Loopback, 8000)))
+
+            //Usage
+            IPEndPoint address = new IPEndPoint(IPAddress.Loopback, 8000);  // Server's Address
+            using (EchoServer server = new EchoServer(address))             // Create an instance of EchoServer
             {
-                server.Start();
-                System.Threading.Thread.Sleep(1000 * 800);
+                server.Start();                                             // Start the echo server
+                System.Threading.Thread.Sleep(1000 * 800);                  // Make the server active for 800 seconds
             }
         }
     }
